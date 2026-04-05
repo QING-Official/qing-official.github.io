@@ -1977,96 +1977,14 @@
             没有找到相关项目，换个关键词试试吧~
         </div>
         
-        <!-- ========== 双制作人核心模块 ========== -->
+        <!-- ========== 双制作人核心模块（已交换顺序） ========== -->
 <section class="author-section" id="author-area">
     <div class="section-header">
         <h2 class="section-title">网站制作人</h2>
         <p class="section-subtitle">用代码构建理想世界，用热爱创造无限可能</p>
     </div>
     <div class="author-grid">
-        <!-- God 制作人卡片 -->
-        <div class="author-card">
-            <!-- 背景视频 -->
-            <video class="author-bg-video" autoplay muted loop playsinline>
-                <source src="God.mp4" type="video/mp4">
-            </video>
-            <div class="author-bg-overlay"></div>
-            
-            <div class="author-content">
-                <div class="author-header">
-                    <div class="author-avatar-wrap">
-                        <img src="God.jpg" alt="God" class="author-avatar preview-img" loading="lazy">
-                        <div class="author-verified">
-                            <i class="fas fa-check"></i>
-                        </div>
-                    </div>
-                    <div class="author-info-wrap">
-                        <div class="author-name-row">
-                            <h1 class="author-name">God</h1>
-                            <span class="author-tag">联合创始人</span>
-                            <span class="author-tag">后端开发</span>
-                        </div>
-                        <p class="author-desc-short">炼蛊炼人还炼天，我命由我不由天</p>
-                        <div class="author-contact-group">
-                            <button class="author-contact-btn primary" onclick="callGodQQ()">
-                                <i class="fa-brands fa-qq"></i>
-                                QQ 联系我
-                            </button>
-                            <a href="https://v.kuaishou.com/4361875447" target="_blank" class="author-contact-btn secondary" onclick="showToast('正在跳转到快手主页...')">
-                                <i class="fas fa-video"></i>
-                                快手主页
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="author-quote-section">
-                    <div class="quote-section-header">
-                        <h3 class="quote-title"><i class="fas fa-feather-alt"></i> 个人语录</h3>
-                        <button class="quote-switch-btn" onclick="switchGodQuote()" title="切换下一条">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
-                    </div>
-                    <div class="quote-display-wrap" id="godQuoteDisplayWrap">
-                        <div class="quote-item active" data-index="0">
-                            <p class="quote-text">落魄谷中寒风吹，春秋蝉鸣少年归</p>
-                        </div>
-                        <span class="quote-index" id="godQuoteIndex">1 / 20</span>
-                        <button class="quote-like-btn" id="godQuoteLikeBtn" onclick="likeGodQuote()">
-                            <i class="far fa-heart" id="godQuoteLikeIcon"></i>
-                            <span id="godQuoteLikeCount">0</span>
-                        </button>
-                    </div>
-                    <button class="quote-list-toggle" id="godQuoteListToggle" onclick="toggleGodQuoteList()">
-                        <i class="fas fa-list" id="godQuoteListIcon"></i>
-                        <span id="godQuoteListText">查看全部语录</span>
-                    </button>
-                    <div class="quote-list-wrap" id="godQuoteListWrap">
-                        <div class="quote-list" id="godQuoteList">
-                            <!-- 20条语录会通过JS动态生成 -->
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="author-hobbies">
-                    <h3 class="hobbies-title"><i class="fas fa-heart"></i> 兴趣爱好</h3>
-                    <div class="hobbies-tags">
-                        <span class="hobby-tag">历史</span>
-                        <span class="hobby-tag">科技</span>
-                        <span class="hobby-tag">蛊真人</span>
-                        <span class="hobby-tag">游戏开发</span>
-                        <span class="hobby-tag">网络安全</span>
-                        <span class="hobby-tag">逆向工程</span>
-                        <span class="hobby-tag">动漫</span>
-                        <span class="hobby-tag">小说</span>
-                        <span class="hobby-tag">军事</span>
-                        <span class="hobby-tag">天文</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 风楚卿 制作人卡片 -->
+        <!-- 风楚卿 制作人卡片（第一个） -->
         <div class="author-card">
             <!-- 背景视频 -->
             <video class="author-bg-video" autoplay muted loop playsinline>
@@ -2143,6 +2061,88 @@
                         <span class="hobby-tag">游戏</span>
                         <span class="hobby-tag">美食</span>
                         <span class="hobby-tag">哲学</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- God 制作人卡片（第二个） -->
+        <div class="author-card">
+            <!-- 背景视频 -->
+            <video class="author-bg-video" autoplay muted loop playsinline>
+                <source src="God.mp4" type="video/mp4">
+            </video>
+            <div class="author-bg-overlay"></div>
+            
+            <div class="author-content">
+                <div class="author-header">
+                    <div class="author-avatar-wrap">
+                        <img src="God.jpg" alt="God" class="author-avatar preview-img" loading="lazy">
+                        <div class="author-verified">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="author-info-wrap">
+                        <div class="author-name-row">
+                            <h1 class="author-name">God</h1>
+                            <span class="author-tag">联合创始人</span>
+                            <span class="author-tag">后端开发</span>
+                        </div>
+                        <p class="author-desc-short">炼蛊炼人还炼天，我命由我不由天</p>
+                        <div class="author-contact-group">
+                            <button class="author-contact-btn primary" onclick="callGodQQ()">
+                                <i class="fa-brands fa-qq"></i>
+                                QQ 联系我
+                            </button>
+                            <a href="https://estplca.m.kuai-fei.com/fw/user/3xuxii7xvp2u8j4?cc=share_wxms&kpf=ANDROID_PHONE&fid=4361875447&shareMode=app&shareMethod=picture&appType=21&kpn=KUAISHOU&subBiz=QR_CODE_PROFILE&shareId=18917063615596&shareToken=YeOP5Euu2&shareObjectId=4361875447" target="_blank" class="author-contact-btn secondary" onclick="showToast('正在跳转到快手主页...')">
+                                <i class="fas fa-video"></i>
+                                快手主页
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="author-quote-section">
+                    <div class="quote-section-header">
+                        <h3 class="quote-title"><i class="fas fa-feather-alt"></i> 个人语录</h3>
+                        <button class="quote-switch-btn" onclick="switchGodQuote()" title="切换下一条">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    <div class="quote-display-wrap" id="godQuoteDisplayWrap">
+                        <div class="quote-item active" data-index="0">
+                            <p class="quote-text">落魄谷中寒风吹，春秋蝉鸣少年归</p>
+                        </div>
+                        <span class="quote-index" id="godQuoteIndex">1 / 20</span>
+                        <button class="quote-like-btn" id="godQuoteLikeBtn" onclick="likeGodQuote()">
+                            <i class="far fa-heart" id="godQuoteLikeIcon"></i>
+                            <span id="godQuoteLikeCount">0</span>
+                        </button>
+                    </div>
+                    <button class="quote-list-toggle" id="godQuoteListToggle" onclick="toggleGodQuoteList()">
+                        <i class="fas fa-list" id="godQuoteListIcon"></i>
+                        <span id="godQuoteListText">查看全部语录</span>
+                    </button>
+                    <div class="quote-list-wrap" id="godQuoteListWrap">
+                        <div class="quote-list" id="godQuoteList">
+                            <!-- 20条语录会通过JS动态生成 -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="author-hobbies">
+                    <h3 class="hobbies-title"><i class="fas fa-heart"></i> 兴趣爱好</h3>
+                    <div class="hobbies-tags">
+                        <span class="hobby-tag">历史</span>
+                        <span class="hobby-tag">科技</span>
+                        <span class="hobby-tag">蛊真人</span>
+                        <span class="hobby-tag">游戏开发</span>
+                        <span class="hobby-tag">网络安全</span>
+                        <span class="hobby-tag">逆向工程</span>
+                        <span class="hobby-tag">动漫</span>
+                        <span class="hobby-tag">小说</span>
+                        <span class="hobby-tag">军事</span>
+                        <span class="hobby-tag">天文</span>
                     </div>
                 </div>
             </div>
@@ -2299,7 +2299,7 @@
         </div>
     </div>
 </div>
-<!-- ===================== 6个视频弹窗占位（表情包占位） ===================== -->
+<!-- ===================== 6个视频弹窗（video1已添加真实视频） ===================== -->
 <div class="modal" id="video1">
     <div class="modal-box">
         <div class="modal-header">
@@ -2309,13 +2309,15 @@
             </button>
         </div>
         <div class="modal-content">
-            🚀 视频正在制作中，敬请期待！<br><br>
-            😊 先看个可爱的表情包吧~<br><br>
-            🐱🐶🐰🦊🐻🐼🐨🐯🦁🐮🐷🐸🐵
+            🚀 Qing记忆储存官方教程视频，点击播放即可观看
         </div>
-        <div class="modal-media" id="video1Media" style="display: none;"></div>
+        <div class="modal-media" id="video1Media">
+            <video controls autoplay playsinline>
+                <source src="https://k0u6fy33y50y16zw2409x8c7ax1000x22xx16z.djvod.ndcimgs.com/upic/2025/12/28/11/BMjAyNTEyMjgxMTA4MTZfNDM2MTg3NTQ0N18xODM1MjAwMDA0NjdfMl8z_b_B239c9385d74e24a250e4d4a88d7082c9.mp4?tag=1-1775349935-unknown-0-pqljdbtbee-5180fb719d56fcd5&provider=self&clientCacheKey=3xsfq4zygindvue_b.mp4&di=27904b73&bp=10000&x-ks-ptid=183520000467&kwai-not-alloc=self-cdn&kcdntag=p:Ningxia;i:ChinaMobile;ft:UNKNOWN;h:COLD;pn:kuaishouVideoProjection&ocid=300000504&tt=b&ss=vpm" type="video/mp4">
+            </video>
+        </div>
         <div class="modal-footer">
-            <button class="modal-btn" onclick="closeAllModal()">我知道了</button>
+            <button class="modal-btn" onclick="closeAllModal()">关闭</button>
         </div>
     </div>
 </div>
@@ -2683,7 +2685,6 @@
         // 核心配置
         const qunUrl = "https://qun.qq.com/universal-share/share?ac=1&authKey=9yYTXq1M98xDr4lVEKHWFXomf4v1H9%2F4u0BGf9qIpYatADwgDaqNeW7vmk2YDW9z&busi_data=eyJncm91cENvZGUiOiI5MjEwMjc1NzYiLCJ0b2tlbiI6InhBQWk3RWJhWGJ1ZzMwUVB5cVplbHpweVl2Q0xKSFZZV2F6ZFJSWjFrcW5sM3pDYW5jYWJYdTVBWjltRzdDd2YiLCJ1aW4iOiIzODgzMTYyNDc4In0%3D&data=8qWTGntmxHc5xHeA9hJQiQFP_6P9n0xj298HkxYH0Tk3iQAe_Gu5jcXJKDqF5M1EdzypxhQ5gF8XDBnuqM_whw&svctype=4&tempid=h5_group_info";
         const apkUrl = "https://wp.kayyw.com/f/aNMAuj/QING%E8%AE%B0%E5%BF%86%E5%82%A8%E5%AD%98_1.0.0.apk";
-        const videoUrl = "https://k0u6fy33y50y16zw2409x8c7ax1000x22xx16z.djvod.ndcimgs.com/upic/2025/12/28/11/BMjAyNTEyMjgxMTA4MTZfNDM2MTg3NTQ0N18xODM1MjAwMDA0NjdfMl8z_b_B239c9385d74e24a250e4d4a88d7082c9.mp4";
         const QQ_GROUP_CODE = "921027576";
         const webQunUrl = "https://qun.qq.com/universal-share/share?ac=1&authKey=LJjXm1%2FrV0u1QObIugg7lLHtFv6vk%2FVmcQrjGhbLlX6Y8%2B4WtOdNCyLRs03wPnOt&busi_data=eyJncm91cENvZGUiOiI5MjEwMjc1NzYiLCJ0b2tuI6Ii9jQk9PaFVHdXdCS3p6UnNMcm95OHg1NXBmNlltWmF1TmphMSs3YWlsWjBIUERYeUl4Z0FCN3NBS2pHdG5KMVciLCJ1aW4iOiIzODgzMTYyNDc4In0%3D&data=NK87e0IllLPD2RzIA4U0gKcLwzMj6yXnsDQjvdtbjw9g6VlJ58kNSrvdX_9Z5ziZXC1BTLViMgNAvL8ODu0UOg&svctype=4&tempid=h5_group_info";
         const originalTitle = document.title;
@@ -2692,9 +2693,7 @@
         
         // ===================== 双制作人核心配置 =====================
         const GOD_QQ = "3883162478";
-        const GOD_KUAISHOU_URL = "https://v.kuaishou.com/4361875447";
         const FENG_QQ = "2567279671";
-        const FENG_KUAISHOU_URL = "https://v.kuaishou.com/Kgi3W4iV";
         
         // God的20条完整语录
         const godQuoteList = [
@@ -2970,11 +2969,10 @@
             
             const mediaContainer = document.getElementById(videoId + 'Media');
             mediaContainer.innerHTML = '';
-            mediaContainer.style.display = 'none';
             
             // 后期伪后端：在这里替换为实际的视频直链
             const videoUrls = {
-                'video1': '', // Qing记忆储存教程视频
+                'video1': 'https://k0u6fy33y50y16zw2409x8c7ax1000x22xx16z.djvod.ndcimgs.com/upic/2025/12/28/11/BMjAyNTEyMjgxMTA4MTZfNDM2MTg3NTQ0N18xODM1MjAwMDA0NjdfMl8z_b_B239c9385d74e24a250e4d4a88d7082c9.mp4?tag=1-1775349935-unknown-0-pqljdbtbee-5180fb719d56fcd5&provider=self&clientCacheKey=3xsfq4zygindvue_b.mp4&di=27904b73&bp=10000&x-ks-ptid=183520000467&kwai-not-alloc=self-cdn&kcdntag=p:Ningxia;i:ChinaMobile;ft:UNKNOWN;h:COLD;pn:kuaishouVideoProjection&ocid=300000504&tt=b&ss=vpm', // Qing记忆储存教程视频
                 'video2': '', // Qing支付演示视频
                 'video3': '', // Qing社区预览视频
                 'video4': '', // Qing音乐演示视频
@@ -2990,7 +2988,6 @@
                 video.style.borderRadius = '12px';
                 video.onloadeddata = function() {
                     mediaContainer.appendChild(video);
-                    mediaContainer.style.display = 'block';
                     video.play().catch(() => {});
                 };
                 video.onerror = function() {
