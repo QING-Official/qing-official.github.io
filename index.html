@@ -174,40 +174,6 @@
             0%, 100% { opacity: 0.7; }
             50% { opacity: 1; }
         }
-        /* 滚动进度条+百分比 */
-        .scroll-progress-wrap {
-            position: fixed;
-            top: 64px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            z-index: 149;
-        }
-        .scroll-progress {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--md-sys-color-primary), var(--theme-purple));
-            transition: width 0.08s cubic-bezier(0.33, 1, 0.68, 1);
-            border-radius: 0 3px 3px 0;
-        }
-        .progress-percent {
-            position: absolute;
-            right: 20px;
-            top: -24px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--md-sys-color-primary);
-            background: var(--md-sys-color-surface);
-            padding: 2px 6px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            opacity: 0;
-            transition: var(--transition-fast);
-        }
-        .progress-percent.visible {
-            opacity: 1;
-            top: 8px;
-        }
         /* 顶部导航栏 */
         .top-app-bar {
             position: fixed;
@@ -763,39 +729,6 @@
             resize: none;
             font-family: inherit;
             transition: var(--transition-fast);
-        }
-        .message-list {
-            max-height: 300px;
-            overflow-y: auto;
-            padding-right: 8px;
-            -webkit-overflow-scrolling: touch;
-        }
-        .message-item {
-            padding: 12px;
-            border-radius: var(--md-sys-shape-corner-small);
-            background: var(--md-sys-color-secondary-container);
-            margin-bottom: 12px;
-        }
-        .message-item-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 6px;
-        }
-        .message-nickname {
-            font-weight: 600;
-            color: var(--md-sys-color-on-secondary-container);
-            font-size: 0.9rem;
-        }
-        .message-time {
-            font-size: 0.75rem;
-            color: var(--md-sys-color-on-surface-variant);
-        }
-        .message-content {
-            font-size: 0.9rem;
-            color: var(--md-sys-color-on-surface);
-            line-height: 1.5;
-            word-break: break-all;
         }
         .empty-message {
             text-align: center;
@@ -1412,7 +1345,6 @@
             .project-grid { grid-template-columns: 1fr; }
             .fab { width: 50px; height: 50px; right: 20px; }
             .theme-panel { right: 20px; }
-            .progress-percent { right: 10px; }
             .runtime-counter { gap: 12px; }
             .time-item { min-width: 45px; }
             .time-num { font-size: 1.8rem; }
@@ -1427,21 +1359,51 @@
             }
         }
         
-        /* ========== 制作人模块专属样式 ========== */
+        /* ========== 双制作人模块专属样式 ========== */
         .author-section {
             margin-bottom: 40px;
         }
+        .author-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
         .author-card {
             background-color: var(--md-sys-color-surface);
-            padding: 24px;
             border-radius: var(--md-sys-shape-corner-large);
             border: 1px solid var(--md-sys-color-outline-variant);
             transition: var(--transition-standard);
+            overflow: hidden;
+            position: relative;
         }
         .author-card:hover {
             border-color: var(--md-sys-color-primary);
             transform: translateY(-2px);
             box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        }
+        /* 背景视频渐变融合效果 */
+        .author-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .author-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to bottom, transparent 0%, var(--md-sys-color-surface) 100%);
+            z-index: 1;
+        }
+        .author-content {
+            position: relative;
+            z-index: 2;
+            padding: 120px 24px 24px;
         }
         .author-header {
             display: flex;
@@ -1454,13 +1416,15 @@
         .author-avatar-wrap {
             position: relative;
             flex-shrink: 0;
+            margin-top: -60px;
         }
         .author-avatar {
             width: 100px;
             height: 100px;
             border-radius: 16px;
             object-fit: cover;
-            border: 3px solid var(--md-sys-color-primary);
+            border: 4px solid var(--md-sys-color-surface);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         .author-verified {
             position: absolute;
@@ -1641,13 +1605,15 @@
         .quote-list-wrap {
             display: none;
             margin-top: 12px;
+            max-height: 300px;
+            overflow-y: auto;
         }
         .quote-list-wrap.open {
             display: block;
         }
         .quote-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr;
             gap: 8px;
         }
         .quote-list-item {
@@ -1665,258 +1631,35 @@
             color: var(--md-sys-color-on-surface-variant);
             text-align: right;
         }
-        .author-achievement {
-            margin-bottom: 40px;
+        .author-hobbies {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--md-sys-color-outline-variant);
         }
-        .achievement-card {
-            background-color: var(--md-sys-color-surface);
-            padding: 24px;
-            border-radius: var(--md-sys-shape-corner-large);
-            border: 1px solid var(--md-sys-color-outline-variant);
-            transition: var(--transition-standard);
-        }
-        .achievement-card:hover {
-            border-color: var(--md-sys-color-primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-        }
-        .achievement-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-        .achievement-title {
-            font-size: 1.75rem;
-            color: var(--md-sys-color-on-surface);
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-        .achievement-subtitle {
-            color: var(--md-sys-color-on-surface-variant);
-            font-size: 0.95rem;
-        }
-        .achievement-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-        .achievement-item {
-            background: var(--md-sys-color-primary-container);
-            padding: 16px;
-            border-radius: 12px;
-            text-align: center;
-        }
-        .achievement-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--md-sys-color-on-primary-container);
-            color: var(--md-sys-color-primary-container);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 8px;
-            font-size: 18px;
-        }
-        .achievement-num {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--md-sys-color-on-primary-container);
-            margin-bottom: 2px;
-        }
-        .achievement-label {
-            font-size: 0.8rem;
-            color: var(--md-sys-color-on-primary-container);
-        }
-        .author-fans-wall {
-            margin-bottom: 40px;
-        }
-        .fans-wall-card {
-            background-color: var(--md-sys-color-surface);
-            padding: 24px;
-            border-radius: var(--md-sys-shape-corner-large);
-            border: 1px solid var(--md-sys-color-outline-variant);
-            transition: var(--transition-standard);
-        }
-        .fans-wall-card:hover {
-            border-color: var(--md-sys-color-primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-        }
-        .fans-wall-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-        .fans-wall-title {
-            font-size: 1.2rem;
+        .hobbies-title {
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--md-sys-color-on-surface);
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
-            margin: 0;
         }
-        .fans-input-wrap {
-            background: var(--md-sys-color-secondary-container);
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-        }
-        .fans-input-row {
+        .hobbies-tags {
             display: flex;
-            gap: 12px;
-            margin-bottom: 12px;
             flex-wrap: wrap;
+            gap: 8px;
         }
-        .fans-input {
-            flex-grow: 1;
-            min-width: 120px;
-            height: 36px;
-            padding: 0 12px;
-            border: 1px solid var(--md-sys-color-outline-variant);
-            border-radius: 8px;
-            background: var(--md-sys-color-surface);
-            color: var(--md-sys-color-on-surface);
-            font-size: 14px;
-            outline: none;
-            transition: var(--transition-fast);
-        }
-        .fans-input:focus {
-            border-color: var(--md-sys-color-primary);
-        }
-        .fans-textarea {
-            width: 100%;
-            height: 80px;
-            padding: 12px;
-            border: 1px solid var(--md-sys-color-outline-variant);
-            border-radius: 8px;
-            background: var(--md-sys-color-surface);
-            color: var(--md-sys-color-on-surface);
-            font-size: 14px;
-            outline: none;
-            resize: none;
-            font-family: inherit;
-            transition: var(--transition-fast);
-            margin-bottom: 12px;
-        }
-        .fans-textarea:focus {
-            border-color: var(--md-sys-color-primary);
-        }
-        .fans-submit-btn {
-            width: 100%;
-            height: 40px;
-            border: none;
-            border-radius: 8px;
-            background: var(--md-sys-color-primary);
-            color: var(--md-sys-color-on-primary);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            transition: var(--transition-fast);
-        }
-        .fans-submit-btn:hover {
-            opacity: 0.9;
-        }
-        .fans-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 12px;
-        }
-        .fans-item {
-            background: var(--md-sys-color-surface-variant);
-            padding: 12px;
-            border-radius: 8px;
-        }
-        .fans-item-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 6px;
-        }
-        .fans-nickname {
-            font-weight: 600;
-            color: var(--md-sys-color-on-surface);
-            font-size: 0.9rem;
-        }
-        .fans-time {
-            font-size: 0.75rem;
-            color: var(--md-sys-color-on-surface-variant);
-        }
-        .fans-content {
-            font-size: 0.85rem;
-            color: var(--md-sys-color-on-surface);
-            line-height: 1.5;
-        }
-        .empty-fans-tip {
-            text-align: center;
-            color: var(--md-sys-color-on-surface-variant);
-            font-size: 0.9rem;
-            padding: 20px 0;
-            grid-column: 1 / -1;
-        }
-        /* 制作人详情弹窗 */
-        .author-modal .modal-box {
-            max-width: 600px;
-        }
-        .author-modal-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 24px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--md-sys-color-outline-variant);
-        }
-        .author-modal-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 16px;
-            object-fit: cover;
-            border: 3px solid var(--md-sys-color-primary);
-            flex-shrink: 0;
-        }
-        .author-modal-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .author-modal-info h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--md-sys-color-on-surface);
-            margin: 0 0 4px 0;
-            text-align: left;
-        }
-        .author-modal-desc {
-            font-size: 0.9rem;
-            color: var(--md-sys-color-on-surface-variant);
-            margin: 0 0 8px 0;
-        }
-        .author-modal-content {
-            margin-bottom: 24px;
-        }
-        .author-modal-section {
-            margin-bottom: 20px;
-        }
-        .author-modal-section-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--md-sys-color-primary);
-            margin-bottom: 12px;
-        }
-        .author-modal-section-desc {
-            font-size: 0.95rem;
-            color: var(--md-sys-color-on-surface);
-            line-height: 1.6;
+        .hobby-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            font-size: 0.8rem;
+            font-weight: 500;
         }
         /* 深色模式适配 */
-        html.dark .author-card::before {
-            background: radial-gradient(circle at 20% 20%, var(--md-sys-color-primary-container) 0%, transparent 60%);
-        }
         html.dark .author-tag {
             background: var(--md-sys-color-primary-container);
             color: var(--md-sys-color-on-primary-container);
@@ -1930,34 +1673,15 @@
         html.dark .quote-list-item {
             background: var(--md-sys-color-surface-variant);
         }
-        html.dark .achievement-item {
+        html.dark .hobby-tag {
             background: var(--md-sys-color-primary-container);
-        }
-        html.dark .achievement-icon {
-            background: var(--md-sys-color-on-primary-container);
-            color: var(--md-sys-color-primary-container);
-        }
-        html.dark .achievement-num,
-        html.dark .achievement-label {
             color: var(--md-sys-color-on-primary-container);
         }
-        html.dark .fans-input-wrap {
-            background: var(--md-sys-color-secondary-container);
-        }
-        html.dark .fans-item {
-            background: var(--md-sys-color-surface-variant);
-        }
         /* 响应式适配 */
-        @media (min-width: 768px) {
-            .author-header {
-                flex-wrap: nowrap;
-                align-items: center;
-            }
-            .achievement-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
         @media (max-width: 767px) {
+            .author-grid {
+                grid-template-columns: 1fr;
+            }
             .author-header {
                 flex-direction: column;
                 align-items: center;
@@ -1979,17 +1703,8 @@
             .quote-list {
                 grid-template-columns: 1fr;
             }
-            .achievement-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .fans-list {
-                grid-template-columns: 1fr;
-            }
-            .fans-input-row {
-                flex-direction: column;
-            }
-            .fans-input {
-                width: 100%;
+            .hobbies-tags {
+                justify-content: center;
             }
         }
     </style>
@@ -1999,11 +1714,6 @@
     <div class="loading-mask" id="loadingMask">
         <div class="loading-spinner"></div>
         <div class="loading-text" id="loadingText">正在加载 Qing 世界...</div>
-    </div>
-    <!-- 滚动进度条+百分比 -->
-    <div class="scroll-progress-wrap">
-        <div class="scroll-progress" id="scrollProgress"></div>
-        <div class="progress-percent" id="progressPercent">0%</div>
     </div>
     <!-- 顶部导航栏 -->
     <header class="top-app-bar" id="topAppBar">
@@ -2267,248 +1977,178 @@
             没有找到相关项目，换个关键词试试吧~
         </div>
         
-        <!-- ========== 制作人风楚卿核心模块 ========== -->
+        <!-- ========== 双制作人核心模块 ========== -->
 <section class="author-section" id="author-area">
-    <div class="author-card">
-        <div class="author-header">
-            <div class="author-avatar-wrap">
-                <img src="fe096390e94f58bea84ea256f873f34b1775310005503.jpg" alt="风楚卿" class="author-avatar preview-img" loading="lazy">
-                <div class="author-verified">
-                    <i class="fas fa-check"></i>
+    <div class="section-header">
+        <h2 class="section-title">网站制作人</h2>
+        <p class="section-subtitle">用代码构建理想世界，用热爱创造无限可能</p>
+    </div>
+    <div class="author-grid">
+        <!-- God 制作人卡片 -->
+        <div class="author-card">
+            <!-- 背景视频 -->
+            <video class="author-bg-video" autoplay muted loop playsinline>
+                <source src="God.mp4" type="video/mp4">
+            </video>
+            <div class="author-bg-overlay"></div>
+            
+            <div class="author-content">
+                <div class="author-header">
+                    <div class="author-avatar-wrap">
+                        <img src="God.jpg" alt="God" class="author-avatar preview-img" loading="lazy">
+                        <div class="author-verified">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="author-info-wrap">
+                        <div class="author-name-row">
+                            <h1 class="author-name">God</h1>
+                            <span class="author-tag">联合创始人</span>
+                            <span class="author-tag">后端开发</span>
+                        </div>
+                        <p class="author-desc-short">炼蛊炼人还炼天，我命由我不由天</p>
+                        <div class="author-contact-group">
+                            <button class="author-contact-btn primary" onclick="callGodQQ()">
+                                <i class="fa-brands fa-qq"></i>
+                                QQ 联系我
+                            </button>
+                            <a href="https://v.kuaishou.com/4361875447" target="_blank" class="author-contact-btn secondary" onclick="showToast('正在跳转到快手主页...')">
+                                <i class="fas fa-video"></i>
+                                快手主页
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="author-info-wrap">
-                <div class="author-name-row">
-                    <h1 class="author-name">风楚卿</h1>
-                    <span class="author-tag">Qing 生态创始人</span>
-                    <span class="author-tag">全栈开发者</span>
-                </div>
-                <p class="author-desc-short">用代码构建理想世界，用文字记录人间温柔。</p>
-                <div class="author-contact-group">
-                    <button class="author-contact-btn primary" onclick="callAuthorQQ()">
-                        <i class="fa-brands fa-qq"></i>
-                        QQ 联系我
+                
+                <div class="author-quote-section">
+                    <div class="quote-section-header">
+                        <h3 class="quote-title"><i class="fas fa-feather-alt"></i> 个人语录</h3>
+                        <button class="quote-switch-btn" onclick="switchGodQuote()" title="切换下一条">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    <div class="quote-display-wrap" id="godQuoteDisplayWrap">
+                        <div class="quote-item active" data-index="0">
+                            <p class="quote-text">落魄谷中寒风吹，春秋蝉鸣少年归</p>
+                        </div>
+                        <span class="quote-index" id="godQuoteIndex">1 / 20</span>
+                        <button class="quote-like-btn" id="godQuoteLikeBtn" onclick="likeGodQuote()">
+                            <i class="far fa-heart" id="godQuoteLikeIcon"></i>
+                            <span id="godQuoteLikeCount">0</span>
+                        </button>
+                    </div>
+                    <button class="quote-list-toggle" id="godQuoteListToggle" onclick="toggleGodQuoteList()">
+                        <i class="fas fa-list" id="godQuoteListIcon"></i>
+                        <span id="godQuoteListText">查看全部语录</span>
                     </button>
-                    <a href="https://v.kuaishou.com/Kgi3W4iV" target="_blank" class="author-contact-btn secondary" onclick="showToast('正在跳转到快手主页...')">
-                        <i class="fas fa-video"></i>
-                        快手主页
-                    </a>
-                    <button class="author-contact-btn secondary" onclick="openAuthorModal()">
-                        <i class="fas fa-user"></i>
-                        关于我
+                    <div class="quote-list-wrap" id="godQuoteListWrap">
+                        <div class="quote-list" id="godQuoteList">
+                            <!-- 20条语录会通过JS动态生成 -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="author-hobbies">
+                    <h3 class="hobbies-title"><i class="fas fa-heart"></i> 兴趣爱好</h3>
+                    <div class="hobbies-tags">
+                        <span class="hobby-tag">历史</span>
+                        <span class="hobby-tag">科技</span>
+                        <span class="hobby-tag">蛊真人</span>
+                        <span class="hobby-tag">游戏开发</span>
+                        <span class="hobby-tag">网络安全</span>
+                        <span class="hobby-tag">逆向工程</span>
+                        <span class="hobby-tag">动漫</span>
+                        <span class="hobby-tag">小说</span>
+                        <span class="hobby-tag">军事</span>
+                        <span class="hobby-tag">天文</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 风楚卿 制作人卡片 -->
+        <div class="author-card">
+            <!-- 背景视频 -->
+            <video class="author-bg-video" autoplay muted loop playsinline>
+                <source src="风楚卿.mp4" type="video/mp4">
+            </video>
+            <div class="author-bg-overlay"></div>
+            
+            <div class="author-content">
+                <div class="author-header">
+                    <div class="author-avatar-wrap">
+                        <img src="fe096390e94f58bea84ea256f873f34b1775310005503.jpg" alt="风楚卿" class="author-avatar preview-img" loading="lazy">
+                        <div class="author-verified">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    <div class="author-info-wrap">
+                        <div class="author-name-row">
+                            <h1 class="author-name">风楚卿</h1>
+                            <span class="author-tag">Qing 生态创始人</span>
+                            <span class="author-tag">全栈开发者</span>
+                        </div>
+                        <p class="author-desc-short">用代码构建理想世界，用文字记录人间温柔</p>
+                        <div class="author-contact-group">
+                            <button class="author-contact-btn primary" onclick="callFengQQ()">
+                                <i class="fa-brands fa-qq"></i>
+                                QQ 联系我
+                            </button>
+                            <a href="https://v.kuaishou.com/Kgi3W4iV" target="_blank" class="author-contact-btn secondary" onclick="showToast('正在跳转到快手主页...')">
+                                <i class="fas fa-video"></i>
+                                快手主页
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="author-quote-section">
+                    <div class="quote-section-header">
+                        <h3 class="quote-title"><i class="fas fa-feather-alt"></i> 个人语录</h3>
+                        <button class="quote-switch-btn" onclick="switchFengQuote()" title="切换下一条">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                    <div class="quote-display-wrap" id="fengQuoteDisplayWrap">
+                        <div class="quote-item active" data-index="0">
+                            <p class="quote-text">明月皎皎照我床，清风吹拂入梦乡</p>
+                        </div>
+                        <span class="quote-index" id="fengQuoteIndex">1 / 10</span>
+                        <button class="quote-like-btn" id="fengQuoteLikeBtn" onclick="likeFengQuote()">
+                            <i class="far fa-heart" id="fengQuoteLikeIcon"></i>
+                            <span id="fengQuoteLikeCount">0</span>
+                        </button>
+                    </div>
+                    <button class="quote-list-toggle" id="fengQuoteListToggle" onclick="toggleFengQuoteList()">
+                        <i class="fas fa-list" id="fengQuoteListIcon"></i>
+                        <span id="fengQuoteListText">查看全部语录</span>
                     </button>
-                </div>
-            </div>
-        </div>
-        <div class="author-quote-section">
-            <div class="quote-section-header">
-                <h3 class="quote-title"><i class="fas fa-feather-alt"></i> 个人语录</h3>
-                <button class="quote-switch-btn" onclick="switchNextQuote()" title="切换下一条">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
-            </div>
-            <div class="quote-display-wrap" id="quoteDisplayWrap">
-                <div class="quote-item active" data-index="0">
-                    <p class="quote-text">明月皎皎照我床，清风吹拂入梦乡。</p>
-                </div>
-                <div class="quote-item" data-index="1">
-                    <p class="quote-text">你才是主角，去放肆展示自己吧</p>
-                </div>
-                <div class="quote-item" data-index="2">
-                    <p class="quote-text">每个人的花期都是不一样的</p>
-                </div>
-                <div class="quote-item" data-index="3">
-                    <p class="quote-text">努力和遗憾，哪个更痛苦？</p>
-                </div>
-                <div class="quote-item" data-index="4">
-                    <p class="quote-text">我真的很向往自由啊，究竟是哪种呢？自由奔跑的那种吧</p>
-                </div>
-                <div class="quote-item" data-index="5">
-                    <p class="quote-text">窗外雨声压竹叶，抬眸望去满是宏——伊蕾娜单推人</p>
-                </div>
-                <div class="quote-item" data-index="6">
-                    <p class="quote-text">寄情相思留云间，遥望云间何有情——伊蕾娜单推人</p>
-                </div>
-                <div class="quote-item" data-index="7">
-                    <p class="quote-text">寄情相思留云间，遥望云间何有情</p>
-                </div>
-                <div class="quote-item" data-index="8">
-                    <p class="quote-text">哇，是你吗？那…那…那请让我来道谢！谢谢你遇见我！</p>
-                </div>
-                <div class="quote-item" data-index="9">
-                    <p class="quote-text">哇，是你吗？那…那…那请让我来道谢！谢谢你遇见我！</p>
-                </div>
-                <span class="quote-index" id="quoteIndex">1 / 10</span>
-                <button class="quote-like-btn" id="quoteLikeBtn" onclick="likeCurrentQuote()">
-                    <i class="far fa-heart" id="quoteLikeIcon"></i>
-                    <span id="quoteLikeCount">0</span>
-                </button>
-            </div>
-            <button class="quote-list-toggle" id="quoteListToggle" onclick="toggleQuoteList()">
-                <i class="fas fa-list" id="quoteListIcon"></i>
-                <span id="quoteListText">查看全部语录</span>
-            </button>
-            <div class="quote-list-wrap" id="quoteListWrap">
-                <div class="quote-list">
-                    <div class="quote-list-item">
-                        <p class="quote-list-text">明月皎皎照我床，清风吹拂入梦乡。</p>
-                        <p class="quote-list-num">语录 01</p>
+                    <div class="quote-list-wrap" id="fengQuoteListWrap">
+                        <div class="quote-list" id="fengQuoteList">
+                            <!-- 10条语录会通过JS动态生成 -->
+                        </div>
                     </div>
-                    <div class="quote-list-item">
-                        <p class="quote-list-text">你才是主角，去放肆展示自己吧</p>
-                        <p class="quote-list-num">语录 02</p>
-                    </div>
-                    <div class="quote-list-item">
-                        <p class="quote-list-text">每个人的花期都是不一样的</p>
-                        <p class="quote-list-num">语录 03</p>
-                    </div>
-                    <div class="quote-list-item">
-                        <p class="quote-list-text">努力和遗憾，哪个更痛苦？</p>
-                        <p class="quote-list-num">语录 04</p>
-                    </div>
-                    <div class="quote-list-item">
-                        <p class="quote-list-text">我真的很向往自由啊，究竟是哪种呢？自由奔跑的那种吧</p>
-                        <p class="quote-list-num">语录 05</p>
-                    </div>
-                    <div class="quote-list-item">
-                        <p class="quote-list-text">窗外雨声压竹叶，抬眸望去满是宏——伊蕾娜单推人</p>
-                        <p class="quote-list-num">语录 06</p>
-                    </div>
-                    <div class="quote-list-item">
-                        <p class="quote-list-text">寄情相思留云间，遥望云间何有情——伊蕾娜单推人</p>
-                        <p class="quote-list-num">语录 07</p>
-                    </div>
-                    <div class="quote-list-item">
-                        <p class="quote-list-text">寄情相思留云间，遥望云间何有情</p>
-                        <p class="quote-list-num">语录 08</p>
-                    </div>
-                    <div class="quote-list-item">
-                        <p class="quote-list-text">哇，是你吗？那…那…那请让我来道谢！谢谢你遇见我！</p>
-                        <p class="quote-list-num">语录 09</p>
-                    </div>
-                    <div class="quote-list-item">
-                        <p class="quote-list-text">哇，是你吗？那…那…那请让我来道谢！谢谢你遇见我！</p>
-                        <p class="quote-list-num">语录 10</p>
+                </div>
+                
+                <div class="author-hobbies">
+                    <h3 class="hobbies-title"><i class="fas fa-heart"></i> 兴趣爱好</h3>
+                    <div class="hobbies-tags">
+                        <span class="hobby-tag">编程</span>
+                        <span class="hobby-tag">设计</span>
+                        <span class="hobby-tag">写作</span>
+                        <span class="hobby-tag">摄影</span>
+                        <span class="hobby-tag">旅行</span>
+                        <span class="hobby-tag">音乐</span>
+                        <span class="hobby-tag">动漫</span>
+                        <span class="hobby-tag">游戏</span>
+                        <span class="hobby-tag">美食</span>
+                        <span class="hobby-tag">哲学</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- 新增：制作人成就模块 -->
-<section class="author-achievement">
-    <div class="achievement-card">
-        <div class="achievement-header">
-            <h2 class="achievement-title">创作者成就</h2>
-            <p class="achievement-subtitle">用心打磨每一款产品，不负每一份期待</p>
-        </div>
-        <div class="achievement-grid">
-            <div class="achievement-item">
-                <div class="achievement-icon">
-                    <i class="fas fa-box"></i>
-                </div>
-                <div class="achievement-num">6</div>
-                <div class="achievement-label">生态产品</div>
-            </div>
-            <div class="achievement-item">
-                <div class="achievement-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div class="achievement-num">10W+</div>
-                <div class="achievement-label">用户覆盖</div>
-            </div>
-            <div class="achievement-item">
-                <div class="achievement-icon">
-                    <i class="fas fa-code"></i>
-                </div>
-                <div class="achievement-num">5</div>
-                <div class="achievement-label">开发年限</div>
-            </div>
-            <div class="achievement-item">
-                <div class="achievement-icon">
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="achievement-num">99%</div>
-                <div class="achievement-label">好评率</div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- 新增：制作人粉丝留言墙 -->
-<section class="author-fans-wall">
-    <div class="fans-wall-card">
-        <div class="fans-wall-header">
-            <h3 class="fans-wall-title"><i class="fas fa-heart" style="color: #ec4899;"></i> 粉丝留言墙</h3>
-            <span class="card-tag tag-success">💬 想对风楚卿说的话</span>
-        </div>
-        <div class="fans-input-wrap">
-            <div class="fans-input-row">
-                <input type="text" class="fans-input" id="fansNicknameInput" placeholder="你的昵称（选填）" value="匿名粉丝" maxlength="20">
-            </div>
-            <textarea class="fans-textarea" id="fansMessageInput" placeholder="写下你想对风楚卿说的话吧..." maxlength="500"></textarea>
-            <button class="fans-submit-btn" onclick="submitFansMessage()">
-                <i class="fas fa-paper-plane"></i>
-                发布留言
-            </button>
-        </div>
-        <div class="fans-list" id="fansList">
-            <div class="empty-fans-tip">暂无留言，快来抢沙发吧~</div>
-        </div>
-    </div>
-</section>
-<!-- 制作人详情弹窗 -->
-<div class="modal author-modal" id="authorModal">
-    <div class="modal-box">
-        <button class="modal-close-btn" onclick="closeAllModal()">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="author-modal-header">
-            <img src="fe096390e94f58bea84ea256f873f34b1775310005503.jpg" alt="风楚卿" class="author-modal-avatar">
-            <div class="author-modal-info">
-                <h3>风楚卿</h3>
-                <p class="author-modal-desc">Qing 生态创始人 | 全栈开发者</p>
-                <p>用代码构建理想世界，用文字记录人间温柔</p>
-            </div>
-        </div>
-        <div class="author-modal-content">
-            <div class="author-modal-section">
-                <h4 class="author-modal-section-title">关于我</h4>
-                <p class="author-modal-section-desc">
-                    一名热爱代码与创作的开发者，专注于打造轻量、快速、安心的互联网产品。
-                    坚信科技应该服务于每一个人，致力于用最简单的代码，解决最实际的需求。
-                    除了敲代码，也喜欢用文字记录生活，用镜头捕捉人间温柔。
-                </p>
-            </div>
-            <div class="author-modal-section">
-                <h4 class="author-modal-section-title">创作理念</h4>
-                <p class="author-modal-section-desc">
-                    不做冗余的功能，只做用户真正需要的产品。
-                    无广告、无捆绑、无强制付费，让每一个用户都能享受到纯粹的产品体验。
-                    用心打磨每一个细节，不负每一份用户的期待。
-                </p>
-            </div>
-            <div class="author-modal-section">
-                <h4 class="author-modal-section-title">联系方式</h4>
-                <p class="author-modal-section-desc">
-                    • QQ：2567279671<br>
-                    • 快手：<a href="https://v.kuaishou.com/Kgi3W4iV" target="_blank" style="color: var(--md-sys-color-primary); text-decoration: none;">点击跳转主页</a><br>
-                    • 官方QQ交流群：921027576
-                </p>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <div class="modal-btn-group" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
-                <button class="btn btn-tonal" onclick="callAuthorQQ()" style="flex: 1; min-width: 100px;">
-                    <i class="fa-brands fa-qq"></i> QQ联系
-                </button>
-                <a href="https://v.kuaishou.com/Kgi3W4iV" target="_blank" class="btn btn-filled" onclick="showToast('正在跳转到快手主页...')" style="flex: 1; min-width: 100px;">
-                    <i class="fas fa-video"></i> 快手主页
-                </a>
-            </div>
-            <button class="modal-btn" onclick="closeAllModal()">我知道了</button>
-        </div>
-    </div>
-</div>
         <!-- 数据卡片 -->
         <div class="stats-card" id="stats-area">
             <h3><i class="fas fa-shield-alt"></i> 网站稳如老狗，已安全运行</h3>
@@ -2641,7 +2281,6 @@
             <p class="custom-color-tip">自定义专属颜色</p>
         </div>
     </div>
-
 <!-- ===================== 通用智能弹窗模板 ===================== -->
 <div class="modal" id="universalModal">
     <div class="modal-box">
@@ -2660,7 +2299,6 @@
         </div>
     </div>
 </div>
-
 <!-- ===================== 6个视频弹窗占位（表情包占位） ===================== -->
 <div class="modal" id="video1">
     <div class="modal-box">
@@ -2681,7 +2319,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal" id="video2">
     <div class="modal-box">
         <div class="modal-header">
@@ -2701,7 +2338,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal" id="video3">
     <div class="modal-box">
         <div class="modal-header">
@@ -2721,7 +2357,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal" id="video4">
     <div class="modal-box">
         <div class="modal-header">
@@ -2741,7 +2376,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal" id="video5">
     <div class="modal-box">
         <div class="modal-header">
@@ -2761,7 +2395,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal" id="video6">
     <div class="modal-box">
         <div class="modal-header">
@@ -2781,7 +2414,6 @@
         </div>
     </div>
 </div>
-
 <!-- QING快报弹窗 -->
 <div class="modal" id="qingKuaiBaoModal">
     <div class="modal-box">
@@ -2800,7 +2432,6 @@
         </div>
     </div>
 </div>
-
     <!-- 教程帮助弹窗 -->
     <div class="modal help-modal" id="tutorialModal">
         <div class="modal-box">
@@ -3058,7 +2689,232 @@
         const originalTitle = document.title;
         const pageLoadTime = performance.now();
         const siteStartTime = new Date('2026-03-01T12:00:00+08:00').getTime();
-
+        
+        // ===================== 双制作人核心配置 =====================
+        const GOD_QQ = "3883162478";
+        const GOD_KUAISHOU_URL = "https://v.kuaishou.com/4361875447";
+        const FENG_QQ = "2567279671";
+        const FENG_KUAISHOU_URL = "https://v.kuaishou.com/Kgi3W4iV";
+        
+        // God的20条完整语录
+        const godQuoteList = [
+            "落魄谷中寒风吹，春秋蝉鸣少年归",
+            "荡魂山处石人泪，定仙游走魔向北",
+            "逆流河上万仙退，爱情不敌坚持泪",
+            "宿命天成命中败，仙尊悔而我不悔",
+            "早岁已知世事艰，仍许飞鸿荡云间",
+            "千磨万击心铸铁，殚精竭虑铸一剑",
+            "炼蛊炼人还炼天，我命由我不由天",
+            "不过是些许风霜罢了",
+            "永生路上多坎坷，这路一人也走得",
+            "待到天开云雾散，负手直望笑苍天",
+            "些许风霜些许愁，无足之鸟不回头",
+            "纵身亡，魔心仍不悔",
+            "乘风破浪三万里，方是我辈魔道人",
+            "踩着白骨和血肉，一步步走向辉煌",
+            "态度是心的面具",
+            "天道无情至公，损有余补不足",
+            "我不是走向成功，就是走向毁灭",
+            "把生死放下，人生才见大宽宏",
+            "因为困难多壮志，不教红尘惑坚心",
+            "天河一挂淘龙鱼，逆天独行顾八荒"
+        ];
+        
+        // 风楚卿的10条语录
+        const fengQuoteList = [
+            "明月皎皎照我床，清风吹拂入梦乡",
+            "你才是主角，去放肆展示自己吧",
+            "每个人的花期都是不一样的",
+            "努力和遗憾，哪个更痛苦？",
+            "我真的很向往自由啊，究竟是哪种呢？自由奔跑的那种吧",
+            "窗外雨声压竹叶，抬眸望去满是宏——伊蕾娜单推人",
+            "寄情相思留云间，遥望云间何有情——伊蕾娜单推人",
+            "寄情相思留云间，遥望云间何有情",
+            "哇，是你吗？那…那…那请让我来道谢！谢谢你遇见我！",
+            "哇，是你吗？那…那…那请让我来道谢！谢谢你遇见我！"
+        ];
+        
+        // ===================== 制作人语录相关功能 =====================
+        let godCurrentQuoteIndex = 0;
+        let godQuoteLikeCount = 0;
+        let godHasLikedQuote = false;
+        let fengCurrentQuoteIndex = 0;
+        let fengQuoteLikeCount = 0;
+        let fengHasLikedQuote = false;
+        
+        // 初始化语录列表
+        function initQuoteLists() {
+            // 初始化God的语录列表
+            const godQuoteListEl = document.getElementById('godQuoteList');
+            if (godQuoteListEl) {
+                let html = '';
+                godQuoteList.forEach((quote, index) => {
+                    html += `
+                        <div class="quote-list-item">
+                            <p class="quote-list-text">${quote}</p>
+                            <p class="quote-list-num">语录 ${String(index + 1).padStart(2, '0')}</p>
+                        </div>
+                    `;
+                });
+                godQuoteListEl.innerHTML = html;
+            }
+            
+            // 初始化风楚卿的语录列表
+            const fengQuoteListEl = document.getElementById('fengQuoteList');
+            if (fengQuoteListEl) {
+                let html = '';
+                fengQuoteList.forEach((quote, index) => {
+                    html += `
+                        <div class="quote-list-item">
+                            <p class="quote-list-text">${quote}</p>
+                            <p class="quote-list-num">语录 ${String(index + 1).padStart(2, '0')}</p>
+                        </div>
+                    `;
+                });
+                fengQuoteListEl.innerHTML = html;
+            }
+        }
+        
+        // 切换God的下一条语录
+        function switchGodQuote() {
+            godCurrentQuoteIndex = (godCurrentQuoteIndex + 1) % godQuoteList.length;
+            const quoteDisplay = document.querySelector('#godQuoteDisplayWrap .quote-item');
+            const quoteIndex = document.getElementById('godQuoteIndex');
+            if (quoteDisplay && quoteIndex) {
+                quoteDisplay.querySelector('.quote-text').textContent = godQuoteList[godCurrentQuoteIndex];
+                quoteIndex.textContent = `${godCurrentQuoteIndex + 1} / ${godQuoteList.length}`;
+            }
+        }
+        
+        // 点赞God的语录
+        function likeGodQuote() {
+            if (godHasLikedQuote) return;
+            godHasLikedQuote = true;
+            godQuoteLikeCount++;
+            const likeIcon = document.getElementById('godQuoteLikeIcon');
+            const likeCountEl = document.getElementById('godQuoteLikeCount');
+            if (likeIcon && likeCountEl) {
+                likeIcon.className = 'fas fa-heart liked';
+                likeCountEl.textContent = godQuoteLikeCount;
+            }
+            localStorage.setItem('godQuoteLikeCount', godQuoteLikeCount.toString());
+            localStorage.setItem('godHasLikedQuote', 'true');
+            showToast('点赞成功！感谢支持~');
+        }
+        
+        // 展开/收起God的全部语录
+        function toggleGodQuoteList() {
+            const quoteListWrap = document.getElementById('godQuoteListWrap');
+            const quoteListIcon = document.getElementById('godQuoteListIcon');
+            const quoteListText = document.getElementById('godQuoteListText');
+            if (!quoteListWrap || !quoteListIcon || !quoteListText) return;
+            const isOpen = quoteListWrap.classList.toggle('open');
+            if (isOpen) {
+                quoteListIcon.className = 'fas fa-chevron-up';
+                quoteListText.textContent = '收起全部语录';
+            } else {
+                quoteListIcon.className = 'fas fa-list';
+                quoteListText.textContent = '查看全部语录';
+            }
+        }
+        
+        // 切换风楚卿的下一条语录
+        function switchFengQuote() {
+            fengCurrentQuoteIndex = (fengCurrentQuoteIndex + 1) % fengQuoteList.length;
+            const quoteDisplay = document.querySelector('#fengQuoteDisplayWrap .quote-item');
+            const quoteIndex = document.getElementById('fengQuoteIndex');
+            if (quoteDisplay && quoteIndex) {
+                quoteDisplay.querySelector('.quote-text').textContent = fengQuoteList[fengCurrentQuoteIndex];
+                quoteIndex.textContent = `${fengCurrentQuoteIndex + 1} / ${fengQuoteList.length}`;
+            }
+        }
+        
+        // 点赞风楚卿的语录
+        function likeFengQuote() {
+            if (fengHasLikedQuote) return;
+            fengHasLikedQuote = true;
+            fengQuoteLikeCount++;
+            const likeIcon = document.getElementById('fengQuoteLikeIcon');
+            const likeCountEl = document.getElementById('fengQuoteLikeCount');
+            if (likeIcon && likeCountEl) {
+                likeIcon.className = 'fas fa-heart liked';
+                likeCountEl.textContent = fengQuoteLikeCount;
+            }
+            localStorage.setItem('fengQuoteLikeCount', fengQuoteLikeCount.toString());
+            localStorage.setItem('fengHasLikedQuote', 'true');
+            showToast('点赞成功！感谢支持~');
+        }
+        
+        // 展开/收起风楚卿的全部语录
+        function toggleFengQuoteList() {
+            const quoteListWrap = document.getElementById('fengQuoteListWrap');
+            const quoteListIcon = document.getElementById('fengQuoteListIcon');
+            const quoteListText = document.getElementById('fengQuoteListText');
+            if (!quoteListWrap || !quoteListIcon || !quoteListText) return;
+            const isOpen = quoteListWrap.classList.toggle('open');
+            if (isOpen) {
+                quoteListIcon.className = 'fas fa-chevron-up';
+                quoteListText.textContent = '收起全部语录';
+            } else {
+                quoteListIcon.className = 'fas fa-list';
+                quoteListText.textContent = '查看全部语录';
+            }
+        }
+        
+        // ===================== 制作人联系方式功能 =====================
+        // QQ唤起功能（全平台兼容）
+        function callQQ(qqNumber) {
+            copyText(qqNumber).then((copySuccess) => {
+                const toastMsg = copySuccess 
+                    ? `已复制QQ号：${qqNumber}，正在尝试唤起QQ...` 
+                    : `QQ号：${qqNumber}，请手动打开QQ添加好友`;
+                showToast(toastMsg);
+                // 全平台QQ唤起协议
+                const qqSchemeList = [
+                    `mqqwpa://im/chat?chat_type=wpa&uin=${qqNumber}&version=1&src_type=web&web_src=qing_official_site`,
+                    `mqqapi://card/show_pslcard?src_type=internal&version=1&uin=${qqNumber}&card_type=person&source=qrcode`,
+                    `mqq://im/chat?uin=${qqNumber}`,
+                    `mqqapi://card/show_pslcard?uin=${qqNumber}&card_type=person`
+                ];
+                let hasOpened = false;
+                function tryOpenScheme(index) {
+                    if (index >= qqSchemeList.length) {
+                        if (!hasOpened) {
+                            showToast('未检测到QQ客户端，已为您复制QQ号，请手动打开QQ添加');
+                        }
+                        return;
+                    }
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = qqSchemeList[index];
+                    document.body.appendChild(iframe);
+                    setTimeout(() => {
+                        document.body.removeChild(iframe);
+                        const failTimer = setTimeout(() => {
+                            tryOpenScheme(index + 1);
+                        }, 1500);
+                        function onVisibilityChange() {
+                            if (document.hidden) {
+                                clearTimeout(failTimer);
+                                hasOpened = true;
+                                document.removeEventListener('visibilitychange', onVisibilityChange);
+                            }
+                        }
+                        document.addEventListener('visibilitychange', onVisibilityChange);
+                    }, 0);
+                }
+                tryOpenScheme(0);
+            });
+        }
+        
+        function callGodQQ() {
+            callQQ(GOD_QQ);
+        }
+        
+        function callFengQQ() {
+            callQQ(FENG_QQ);
+        }
+        
         // ===================== 智能媒体检测与弹窗系统 =====================
         // 通用弹窗打开函数（自动检测并显示媒体）
         function openSmartModal(modalId, title, content, imageUrl = '', videoUrl = '') {
@@ -3107,7 +2963,6 @@
             // 打开弹窗
             openModal(modalId);
         }
-
         // 视频弹窗打开函数（自动检测视频直链）
         function openVideoModal(videoId) {
             const modal = document.getElementById(videoId);
@@ -3147,7 +3002,6 @@
             // 打开弹窗
             openModal(videoId);
         }
-
         // QING快报函数（支持图片和视频）
         function showQingKuaiBao(content, imageUrl = '', videoUrl = '') {
             document.getElementById('qingKuaiBaoContent').innerHTML = content;
@@ -3184,7 +3038,6 @@
             
             openModal('qingKuaiBaoModal');
         }
-
         // 新手引导配置
         const guideSteps = [
             {
@@ -3335,21 +3188,14 @@
         });
         // 滚动相关优化
         let lastScrollTop = 0;
-        const scrollProgress = document.getElementById('scrollProgress');
-        const progressPercent = document.getElementById('progressPercent');
         const topAppBar = document.getElementById('topAppBar');
         const backTopFab = document.getElementById('backTopFab');
         const settingFab = document.getElementById('settingFab');
         const mobileNav = document.getElementById('mobileNav');
-        function updateScrollProgress() {
+        function updateScrollState() {
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const progress = Math.min(Math.max((scrollTop / scrollHeight) * 100, 0), 100);
             
             requestAnimationFrame(() => {
-                scrollProgress.style.width = `${progress}%`;
-                progressPercent.textContent = `${Math.round(progress)}%`;
-                progress > 0 ? progressPercent.classList.add('visible') : progressPercent.classList.remove('visible');
                 if (scrollTop > 10) {
                     topAppBar.classList.add('scrolled');
                     if (scrollTop > lastScrollTop && scrollTop > 300) {
@@ -3385,8 +3231,8 @@
                 lastScrollTop = scrollTop;
             });
         }
-        window.addEventListener('scroll', throttle(updateScrollProgress, 16));
-        updateScrollProgress();
+        window.addEventListener('scroll', throttle(updateScrollState, 16));
+        updateScrollState();
         // 项目卡片动画
         const projectItems = document.querySelectorAll('.project-card');
         const cardObserver = new IntersectionObserver((entries) => {
@@ -3479,255 +3325,6 @@
         setInterval(updateVisitTime, 1000);
         updateVisitTime();
         
-        // ===================== 制作人模块核心配置 =====================
-const AUTHOR_QQ = "2567279671";
-const AUTHOR_KUAISHOU_URL = "https://v.kuaishou.com/Kgi3W4iV";
-const authorQuoteList = [
-    "明月皎皎照我床，清风吹拂入梦乡。",
-    "你才是主角，去放肆展示自己吧",
-    "每个人的花期都是不一样的",
-    "努力和遗憾，哪个更痛苦？",
-    "我真的很向往自由啊，究竟是哪种呢？自由奔跑的那种吧",
-    "窗外雨声压竹叶，抬眸望去满是宏——伊蕾娜单推人",
-    "寄情相思留云间，遥望云间何有情——伊蕾娜单推人",
-    "寄情相思留云间，遥望云间何有情",
-    "哇，是你吗？那…那…那请让我来道谢！谢谢你遇见我！",
-    "哇，是你吗？那…那…那请让我来道谢！谢谢你遇见我！"
-];
-// ===================== 语录相关功能 =====================
-let currentQuoteIndex = 0;
-let quoteLikeCount = 0;
-let hasLikedQuote = false;
-// 初始化语录点赞状态
-function initQuoteLike() {
-    const savedLikeCount = localStorage.getItem('quoteLikeCount');
-    const savedHasLiked = localStorage.getItem('hasLikedQuote') === 'true';
-    if (savedLikeCount) quoteLikeCount = parseInt(savedLikeCount);
-    hasLikedQuote = savedHasLiked;
-    
-    const likeIcon = document.getElementById('quoteLikeIcon');
-    const likeCountEl = document.getElementById('quoteLikeCount');
-    if (likeIcon && likeCountEl) {
-        likeIcon.className = hasLikedQuote ? 'fas fa-heart liked' : 'far fa-heart';
-        likeCountEl.textContent = quoteLikeCount;
-    }
-}
-// 切换下一条语录
-function switchNextQuote() {
-    const quoteItems = document.querySelectorAll('.quote-item');
-    const quoteIndexEl = document.getElementById('quoteIndex');
-    if (quoteItems.length === 0) return;
-    
-    // 隐藏当前语录
-    quoteItems[currentQuoteIndex].classList.add('exit');
-    quoteItems[currentQuoteIndex].classList.remove('active');
-    
-    // 计算下一条索引
-    currentQuoteIndex = (currentQuoteIndex + 1) % quoteItems.length;
-    
-    // 显示下一条语录
-    quoteItems[currentQuoteIndex].classList.add('enter', 'active');
-    setTimeout(() => {
-        quoteItems[currentQuoteIndex].classList.remove('enter');
-    }, 300);
-    
-    // 更新索引显示
-    if (quoteIndexEl) {
-        quoteIndexEl.textContent = `${currentQuoteIndex + 1} / ${quoteItems.length}`;
-    }
-}
-// 点赞当前语录
-function likeCurrentQuote() {
-    if (hasLikedQuote) return;
-    
-    hasLikedQuote = true;
-    quoteLikeCount++;
-    
-    const likeIcon = document.getElementById('quoteLikeIcon');
-    const likeCountEl = document.getElementById('quoteLikeCount');
-    if (likeIcon && likeCountEl) {
-        likeIcon.className = 'fas fa-heart liked';
-        likeCountEl.textContent = quoteLikeCount;
-    }
-    
-    // 保存到本地存储
-    localStorage.setItem('quoteLikeCount', quoteLikeCount.toString());
-    localStorage.setItem('hasLikedQuote', 'true');
-    
-    showToast('点赞成功！感谢支持~');
-}
-// 展开/收起全部语录
-function toggleQuoteList() {
-    const quoteListWrap = document.getElementById('quoteListWrap');
-    const quoteListIcon = document.getElementById('quoteListIcon');
-    const quoteListText = document.getElementById('quoteListText');
-    if (!quoteListWrap || !quoteListIcon || !quoteListText) return;
-    
-    const isOpen = quoteListWrap.classList.toggle('open');
-    if (isOpen) {
-        quoteListIcon.className = 'fas fa-chevron-up';
-        quoteListText.textContent = '收起全部语录';
-    } else {
-        quoteListIcon.className = 'fas fa-list';
-        quoteListText.textContent = '查看全部语录';
-    }
-}
-// ===================== 粉丝留言墙功能 =====================
-let fansMessageList = [];
-// 初始化粉丝留言列表
-function renderFansMessageList() {
-    const fansListEl = document.getElementById('fansList');
-    if (!fansListEl) return;
-    
-    // 从本地存储读取留言
-    try {
-        fansMessageList = JSON.parse(localStorage.getItem('fansMessageList') || '[]');
-    } catch (e) {
-        fansMessageList = [];
-        localStorage.setItem('fansMessageList', '[]');
-    }
-    
-    if (fansMessageList.length === 0) {
-        fansListEl.innerHTML = '<div class="empty-fans-tip">暂无留言，快来抢沙发吧~</div>';
-        return;
-    }
-    
-    // 按时间倒序排序
-    const sortedList = [...fansMessageList].sort((a, b) => new Date(b.time) - new Date(a.time));
-    
-    let html = '';
-    sortedList.forEach(message => {
-        const safeNickname = htmlEscape(message.nickname);
-        const safeContent = htmlEscape(message.content);
-        html += `
-            <div class="fans-item">
-                <div class="fans-item-header">
-                    <span class="fans-nickname">${safeNickname}</span>
-                    <span class="fans-time">${message.time}</span>
-                </div>
-                <div class="fans-content">${safeContent}</div>
-            </div>
-        `;
-    });
-    
-    fansListEl.innerHTML = html;
-}
-// 提交粉丝留言
-function submitFansMessage() {
-    const nicknameInput = document.getElementById('fansNicknameInput');
-    const messageInput = document.getElementById('fansMessageInput');
-    if (!nicknameInput || !messageInput) return;
-    
-    const nickname = nicknameInput.value.trim() || '匿名粉丝';
-    const content = messageInput.value.trim();
-    
-    if (!content) {
-        showToast('请输入留言内容');
-        messageInput.focus();
-        return;
-    }
-    
-    // 防重复提交
-    const lastSubmitTime = parseInt(localStorage.getItem('lastFansMessageTime') || 0);
-    const now = Date.now();
-    if (now - lastSubmitTime < 60000) {
-        showToast('留言太频繁啦，请1分钟后再试');
-        return;
-    }
-    
-    // 生成留言数据
-    const newMessage = {
-        id: 'fans_msg_' + now + '_' + Math.random().toString(36).substr(2, 9),
-        nickname,
-        content,
-        time: formatDate(new Date())
-    };
-    
-    // 添加到列表并保存
-    fansMessageList.unshift(newMessage);
-    if (fansMessageList.length > 50) fansMessageList = fansMessageList.slice(0, 50);
-    localStorage.setItem('fansMessageList', JSON.stringify(fansMessageList));
-    localStorage.setItem('lastFansMessageTime', now.toString());
-    
-    // 重新渲染
-    renderFansMessageList();
-    
-    // 清空输入框
-    messageInput.value = '';
-    
-    showToast('留言发布成功！风楚卿会看到哦~');
-}
-// HTML转义函数（防止XSS）
-function htmlEscape(str) {
-    return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-}
-// ===================== 制作人联系方式功能 =====================
-// QQ唤起功能（全平台兼容）
-function callAuthorQQ() {
-    const authorQQ = AUTHOR_QQ;
-    // 先复制QQ号
-    copyText(authorQQ).then((copySuccess) => {
-        const toastMsg = copySuccess 
-            ? `已复制风楚卿的QQ号：${authorQQ}，正在尝试唤起QQ...` 
-            : `风楚卿的QQ号：${authorQQ}，请手动打开QQ添加好友`;
-        showToast(toastMsg);
-        // 全平台QQ唤起协议
-        const qqSchemeList = [
-            `mqqwpa://im/chat?chat_type=wpa&uin=${authorQQ}&version=1&src_type=web&web_src=qing_official_site`,
-            `mqqapi://card/show_pslcard?src_type=internal&version=1&uin=${authorQQ}&card_type=person&source=qrcode`,
-            `mqq://im/chat?uin=${authorQQ}`,
-            `mqqapi://card/show_pslcard?uin=${authorQQ}&card_type=person`
-        ];
-        let hasOpened = false;
-        function tryOpenScheme(index) {
-            if (index >= qqSchemeList.length) {
-                if (!hasOpened) {
-                    showToast('未检测到QQ客户端，已为您复制QQ号，请手动打开QQ添加');
-                }
-                return;
-            }
-            const iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = qqSchemeList[index];
-            document.body.appendChild(iframe);
-            setTimeout(() => {
-                document.body.removeChild(iframe);
-                const failTimer = setTimeout(() => {
-                    tryOpenScheme(index + 1);
-                }, 1500);
-                function onVisibilityChange() {
-                    if (document.hidden) {
-                        clearTimeout(failTimer);
-                        hasOpened = true;
-                        document.removeEventListener('visibilitychange', onVisibilityChange);
-                    }
-                }
-                document.addEventListener('visibilitychange', onVisibilityChange);
-            }, 0);
-        }
-        tryOpenScheme(0);
-    });
-}
-// 打开制作人详情弹窗
-function openAuthorModal() {
-    openModal('authorModal');
-}
-// ===================== 初始化函数 =====================
-// 初始化制作人模块所有功能
-function initAuthorModule() {
-    initQuoteLike();
-    renderFansMessageList();
-    initCollect(); // 关联收藏功能
-}
-// 页面加载时初始化
-document.addEventListener('DOMContentLoaded', () => {
-    initAuthorModule();
-});
         // 在线人数模拟
         function updateOnlineCount() {
             const baseCount = 8;
@@ -4328,7 +3925,6 @@ document.addEventListener('DOMContentLoaded', () => {
         function backToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
 // ===================== 新增：官网跳转检测功能 =====================
 function checkAndRedirect(url) {
     // 显示加载提示
@@ -4352,12 +3948,12 @@ function checkAndRedirect(url) {
         window.open(url, '_blank');
     }, 3000);
 }
-
         // 页面加载初始化
         document.addEventListener("DOMContentLoaded", function() {
             initTheme();
             initSetting();
             initCollect();
+            initQuoteLists(); // 初始化制作人语录列表
             const savedColor = localStorage.getItem('themeColor') || 'blue';
             themeColors.includes(savedColor) ? changeThemeColor(savedColor) : (customColorInput.value = savedColor, changeThemeColor(savedColor));
             typingEffect();
